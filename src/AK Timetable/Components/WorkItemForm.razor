@@ -1,0 +1,36 @@
+﻿
+<div class="col-12">
+    <EditForm Model="Model" OnValidSubmit="SubmitForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" @bind-value="Model.Name" />
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" @bind-value="Model.Description" />
+        </div>
+        <div class="form-group">
+            <label>Severity</label>
+            <InputSelect TValue="Severity" @bind-Value="Model.Severity" class="form-control">
+                @foreach (var value in Enum.GetValues(typeof(Severity)))
+                {
+                    <option>@value</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="form-group">
+            <label>Color</label>
+            <input type="text" class="form-control" @bind-value="Model.Color" />
+        </div>
+        <button class="btn btn-block btn-success" type="submit">Save</button>
+
+    </EditForm>
+
+</div>
+
+
+@code {
+
+}

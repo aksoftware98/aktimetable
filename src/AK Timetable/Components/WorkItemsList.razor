@@ -1,0 +1,28 @@
+﻿
+<div class="row">
+    <div class="col-4 m-2">
+        <button class="btn btn-success" @onclick="ToggleForm">+</button>
+    </div>
+    <div class="col-4 m-2">
+        <button class="btn btn-danger" disabled="@(_selectedModel == null)">Remove</button>
+    </div>
+    <div class="col-4 m-2">
+        <button class="btn btn-primary">Save</button>
+    </div>
+</div>
+
+@if (_isFromShown)
+{
+    <div class="row">
+        <WorkItemForm OnFormSubmitted="OnFormSubmitted" Model="_selectedModel" />
+    </div>
+}
+
+<div class="row">
+    <ul>
+        @foreach (var item in _workItems)
+        {
+            <li>@item.Name - @item.Severity </li>
+        }
+    </ul>
+</div>
