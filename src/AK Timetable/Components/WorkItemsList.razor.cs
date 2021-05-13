@@ -1,7 +1,11 @@
 ﻿using AK_Timetable.Models;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Components;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,6 +38,32 @@ namespace AK_Timetable.Components
             }
         }
 
+        protected override void OnInitialized()
+        {
+            var content = File.ReadAllText("C:\\Users\\dell\\Desktop\\May table.json");
+            _workItems = JsonConvert.DeserializeObject<List<WorkItem>>(content);
+        }
+
+
+        private async Task SaveAsync()
+        {
+            var options = new SaveDialogOptions()
+            {
+                Title = "Choose a location",
+                Filters = new[]
+                {
+                    new FileFilter { Name = "JSON", Extensions = new[] { "json" } }
+                }
+            };
+
+            var mainWindow = Electron.WindowManager.BrowserWindows.First();
+            var result = await Electron.Dialog.ShowSaveDialogAsync(mainWindow, options);
+            if (result != null)
+            {
+                File.WriteAllText(result, JsonConvert.SerializeObject(_workItems));
+            }
+
+        }
 
 
     }

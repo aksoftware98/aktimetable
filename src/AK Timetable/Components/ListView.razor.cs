@@ -27,6 +27,5 @@ namespace AK_Timetable.Components
             SelectedItemChanged.InvokeAsync(item);
         }
 
-
     }
 }
