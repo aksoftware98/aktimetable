@@ -22,7 +22,12 @@
         </div>
         <div class="form-group">
             <label>Color</label>
-            <input type="text" class="form-control" @bind-value="Model.Color" />
+            <InputSelect TValue="string" @bind-Value="Model.Color" class="form-control">
+                @foreach (var value in Colors.All)
+                {
+                    <option style="background-color:@value.Value;color:white" value="@value.Value">@value.Key</option>
+                }
+            </InputSelect>
         </div>
         <button class="btn btn-block btn-success" type="submit">Save</button>
 

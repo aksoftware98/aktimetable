@@ -1,0 +1,29 @@
+﻿.listview {
+    border: 1px solid #AAAAAAAA;
+    margin: 2px;
+    padding: 2px;
+    overflow-y: auto;
+    min-height: 700px;
+    max-height: 700px;
+}
+
+.listview .card {
+    color: white; 
+    cursor: pointer;
+    padding: 2px; 
+    margin: 3px; 
+    border-radius: 4px;
+    transition: 0.3s; 
+}
+
+.selected {
+    border: 2px dashed #979593;
+}
+
+.listview .card:hover {
+    transform: scale(0.98);
+}
+
+.listview .card:active {
+    transform: scale(0.97);
+}

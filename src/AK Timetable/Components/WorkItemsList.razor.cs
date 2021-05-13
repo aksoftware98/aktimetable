@@ -16,6 +16,7 @@ namespace AK_Timetable.Components
 
         private void ToggleForm()
         {
+            _selectedModel = null;
             _isFromShown = !_isFromShown;
         }
 
