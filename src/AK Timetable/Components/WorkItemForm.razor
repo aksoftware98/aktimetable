@@ -14,6 +14,7 @@
         <div class="form-group">
             <label>Severity</label>
             <InputSelect TValue="Severity" @bind-Value="Model.Severity" class="form-control">
+                <option>Please Select a color</option>
                 @foreach (var value in Enum.GetValues(typeof(Severity)))
                 {
                     <option>@value</option>
@@ -23,6 +24,7 @@
         <div class="form-group">
             <label>Color</label>
             <InputSelect TValue="string" @bind-Value="Model.Color" class="form-control">
+                <option>Please Select a color</option>
                 @foreach (var value in Colors.All)
                 {
                     <option style="background-color:@value.Value;color:white" value="@value.Value">@value.Key</option>

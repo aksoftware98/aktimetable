@@ -10,7 +10,8 @@ namespace AK_Timetable
 
         public static Dictionary<string, string> All = new Dictionary<string, string>
         {
-            { "Red", "#a4262c" },
+            { "YellowGreen", "#8cbd18" },
+            { "Red", "#d13438" },
             { "Orange", "#ca5010" },
             { "Green", "#0b6a0b" },
             { "Cyan", "#038387" },
