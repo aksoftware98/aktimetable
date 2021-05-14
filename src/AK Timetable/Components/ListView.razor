@@ -7,7 +7,7 @@
         foreach (var item in Items)
         {
             bool _isSelected = item.Equals(SelectedItem);
-            <div class="ms-depth-8 card @(_isSelected ? "selected" : "")" @onclick="() => ItemClick(item)">
+            <div class="ms-depth-4 card @(_isSelected ? "selected" : "")" @onclick="() => ItemClick(item)">
                 @ItemTemplate(item)
             </div>
         }

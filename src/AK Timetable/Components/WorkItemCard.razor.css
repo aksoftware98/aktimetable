@@ -1,0 +1,24 @@
+﻿.work-item-card {
+    color: white;
+    background-color: white;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-left: 2px solid black; 
+    color: black;
+}
+
+    .work-item-card .details {
+        margin-left: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+
+
+p {
+    margin-top: 0.1rem!important; 
+    margin-bottom: 0.1rem!important; 
+}

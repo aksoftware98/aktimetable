@@ -22,15 +22,7 @@
     <div class="col-12">
         <ListView Items="_workItems" @bind-SelectedItem="_selectedModel">
             <ItemTemplate>
-                <div class="flex-row align-items-center" style="color:white; background-color: @context.Color">
-                    <div style="margin: 4px; border-radius: 5px;">
-                        <h3 class="ms-fontSize-22">@context.Name</h3>
-                    </div>
-                    <div class=" overflow:hidden; white-space:nowrap; text-overflow: ellipsis;">
-                        <p class="ms-fontSize-18">@context.Description</p>
-                        <p class="ms-fontSize-18">@context.Severity</p>
-                    </div>
-                </div>
+               <WorkItemCard WorkItem="@context" />
             </ItemTemplate>
         </ListView>
     </div>

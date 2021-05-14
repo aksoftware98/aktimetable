@@ -1,0 +1,16 @@
+﻿<div class="work-item-card" style="border-left-color:@WorkItem.Color">
+    <div style="margin: 4px; border-radius: 5px;">
+        <h3 class="ms-fontSize-18">@WorkItem.Name</h3>
+    </div>
+    <div class="details">
+        <p class="ms-fontSize-14">@WorkItem.Description</p>
+        
+        <p class="ms-fontSize-14"><span class="badge" style="background-color:@WorkItem.Color;color: white;">@WorkItem.Severity</span></p>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public WorkItem WorkItem { get; set; }
+}
