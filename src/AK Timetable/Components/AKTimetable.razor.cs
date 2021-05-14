@@ -14,6 +14,8 @@ namespace AK_Timetable.Components
         [Parameter]
         public Timetable Timetable { get; set; }
 
+        [Parameter]
+        public DateTime Day { get; set; }
 
 
     }
