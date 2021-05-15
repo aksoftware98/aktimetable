@@ -1,5 +1,6 @@
 ﻿using AK_Timetable.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,12 @@ namespace AK_Timetable.Components
             if (SelectedBlock != null)
                 SelectedBlock.WorkItem = workItem;
             StateHasChanged();
+        }
+
+        private void MouseOver(MouseEventArgs args, TimetableBlock block)
+        {
+            if (args.Button == 0)
+                SelectBlock(block);
         }
 
     }

@@ -22,7 +22,7 @@
                 if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
                     style = "background-color: #dff6dd";
                 <td>
-                    <div class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="() => SelectBlock(item)" style="@style">
+                    <div class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="() => SelectBlock(item)" @onmouseover="(m) => MouseOver(m, item)" style="@style">
                         @item.Name
                     </div>
                 </td>
