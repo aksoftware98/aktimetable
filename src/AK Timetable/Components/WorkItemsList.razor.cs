@@ -14,6 +14,9 @@ namespace AK_Timetable.Components
     public partial class WorkItemsList : ComponentBase
     {
 
+        [Parameter]
+        public EventCallback<WorkItem> WorkItemSelect { get; set; }
+
         private WorkItem _selectedModel = null;
         private List<WorkItem> _workItems = new List<WorkItem>();
         private bool _isFromShown = false; 
@@ -65,6 +68,11 @@ namespace AK_Timetable.Components
 
         }
 
+        private void SelectWorkItem(WorkItem workItem)
+        {
+            _selectedModel = workItem;
+            WorkItemSelect.InvokeAsync(workItem);
+        }
 
     }
 }

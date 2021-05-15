@@ -1,4 +1,4 @@
-﻿<div class="work-item-card" style="border-left-color:@WorkItem.Color">
+﻿<div class="work-item-card" style="border-left-color:@WorkItem.Color" @onclick="OnClick">
     <div style="margin: 4px; border-radius: 5px;">
         <h3 class="ms-fontSize-18">@WorkItem.Name</h3>
     </div>
@@ -13,4 +13,7 @@
 {
     [Parameter]
     public WorkItem WorkItem { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
 }

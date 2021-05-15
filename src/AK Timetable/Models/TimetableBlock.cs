@@ -11,5 +11,9 @@ namespace AK_Timetable.Models
         public DateTime EndDate { get; set; }
 
         public string Note { get; set; }
+
+        public WorkItem WorkItem { get; set; }
+
+        public string Name => WorkItem?.Name;
     }
 }

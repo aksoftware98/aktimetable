@@ -12,7 +12,7 @@ namespace AK_Timetable.Models
         public DateTime Day { get; set; }
 
         public List<TimetableBlock> Blocks { get; set; }
-
+        
         public Timetable()
         {
             Blocks = new List<TimetableBlock>();

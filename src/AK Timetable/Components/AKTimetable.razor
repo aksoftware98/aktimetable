@@ -1,4 +1,36 @@
-﻿<h3>AKTimetable</h3>
+﻿
+<h3>AKTimetable</h3>
+<table class="timetable-table">
+
+    @for (int i = 0; i < 12; i++)
+    {
+        <tr class="time-row">
+            @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
+            {
+                <td>
+                    @item.StartDate.ToString("hh:mm tt")
+                </td>
+            }
+        </tr>
+        <tr>
+            @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
+            {
+                bool _isSelected = SelectedBlock == item;
+                string style = string.Empty;
+                if (item.WorkItem != null)
+                    style = "background-color: " + item.WorkItem.Color;
+                if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
+                    style = "background-color: #dff6dd";
+                <td>
+                    <div class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="() => SelectBlock(item)" style="@style">
+                        @item.Name
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+
+</table>
 
 @code {
 

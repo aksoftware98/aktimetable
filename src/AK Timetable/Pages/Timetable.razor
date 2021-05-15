@@ -20,12 +20,14 @@
             
             <!-- Timetable -->
             <div class="row">
-
+                <div class="col-12">
+                    <AKTimetable @ref="_timetable" />
+                </div>
             </div>
         </div>
 
         <div class="col-sm-12 col-lg-4">
-          <WorkItemsList />
+          <WorkItemsList WorkItemSelect="OnSelectWorkItem" />
         </div>
     </div>
 </div>

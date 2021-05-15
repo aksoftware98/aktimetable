@@ -1,1 +1,31 @@
-﻿
+﻿.timetable-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+}
+
+.time-row {
+    color: black;
+}
+
+.tasks-row {
+    color: white; 
+}
+
+.task-card {
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-top: 3px;
+    color: white;
+    text-align: center;
+}
+
+    .task-card:hover {
+        border: 1px solid #ffaa44;
+    }
+
+.selected-card {
+    border: 1px dashed #8a8886;
+    background-color: #ffaa44;
+}
