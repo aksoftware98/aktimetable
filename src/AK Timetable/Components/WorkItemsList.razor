@@ -1,13 +1,13 @@
 ﻿
 <div class="row">
     <div class="col-3 m-2">
-        <button class="btn btn-success btn-block" @onclick="ToggleForm">+</button>
+        <button class="btn btn-success" @onclick="ToggleForm">+</button>
     </div>
     <div class="col-3 m-2">
-        <button class="btn btn-danger btn-block" disabled="@(_selectedModel == null)">Remove</button>
+        <button class="btn btn-danger" disabled="@(_selectedModel == null)">Remove</button>
     </div>
     <div class="col-3 m-2">
-        <button class="btn btn-primary btn-block" @onclick="SaveAsync">Save</button>
+        <button class="btn btn-primary" @onclick="SaveAsync">Save</button>
     </div>
 </div>
 

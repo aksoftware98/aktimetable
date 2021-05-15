@@ -12,5 +12,27 @@ namespace AK_Timetable.Models
         public DateTime Day { get; set; }
 
         public List<TimetableBlock> Blocks { get; set; }
+
+        public Timetable()
+        {
+            Blocks = new List<TimetableBlock>();
+            InitializeTimetable();
+        }
+
+        private void InitializeTimetable()
+        {
+            var datetime = DateTime.Today;
+            for (int i = 0; i < 96; i++)
+            {
+                int mins = i * 15;
+                var startDate = datetime.AddMinutes(mins);
+                var endDate = startDate.AddMinutes(15);
+                Blocks.Add(new TimetableBlock
+                {
+                    StartDate = startDate,
+                    EndDate = endDate,
+                });
+            }
+        }
     }
 }
