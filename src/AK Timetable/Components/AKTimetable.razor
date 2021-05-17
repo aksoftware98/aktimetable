@@ -15,14 +15,14 @@
         <tr>
             @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
             {
-                bool _isSelected = SelectedBlock == item;
+                bool _isSelected = CheckSelection(item);
                 string style = string.Empty;
                 if (item.WorkItem != null)
                     style = "background-color: " + item.WorkItem.Color;
                 if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
                     style = "background-color: #dff6dd";
                 <td>
-                    <div class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="() => SelectBlock(item)" @onmouseover="(m) => MouseOver(m, item)" style="@style">
+                    <div draggable="false" class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="(e) => SelectBlock(e, item)" style="@style">
                         @item.Name
                     </div>
                 </td>

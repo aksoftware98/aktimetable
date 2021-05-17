@@ -19,10 +19,10 @@ namespace AK_Timetable.Components
         public DateTime Day { get; set; }
 
         [Parameter]
-        public TimetableBlock SelectedBlock { get; set; }
+        public List<TimetableBlock> SelectedBlocks { get; set; } = new List<TimetableBlock>();
 
         [Parameter]
-        public EventCallback<TimetableBlock> SelectedBlockChanged { get; set; }
+        public EventCallback<List<TimetableBlock>> SelectedBlocksChanged { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -30,31 +30,41 @@ namespace AK_Timetable.Components
                 Timetable = new Timetable();
         }
 
-        private void SelectBlock(TimetableBlock block)
+        private bool CheckSelection(TimetableBlock block)
         {
-            if (SelectedBlock == block)
+            return SelectedBlocks.Contains(block);
+        }
+
+        private void SelectBlock(MouseEventArgs e, TimetableBlock block)
+        {
+            if (!e.CtrlKey)
+                SelectedBlocks.Clear();
+            
+            if (CheckSelection(block))
             {
-                SelectedBlock = null;
+                SelectedBlocks.Remove(block);
             }
             else
             {
-                SelectedBlock = block;
+                SelectedBlocks.Add(block);
             }
-            SelectedBlockChanged.InvokeAsync(block);
+            SelectedBlocksChanged.InvokeAsync(SelectedBlocks);
         }
 
         internal void SetWorkItem(WorkItem workItem)
         {
-            if (SelectedBlock != null)
-                SelectedBlock.WorkItem = workItem;
+            foreach (var item in SelectedBlocks)
+            {
+                item.WorkItem = workItem;
+            }
             StateHasChanged();
         }
 
-        private void MouseOver(MouseEventArgs args, TimetableBlock block)
-        {
-            if (args.Button == 0)
-                SelectBlock(block);
-        }
+        //private void MouseOver(MouseEventArgs args, TimetableBlock block)
+        //{
+        //    if (args.Buttons == 1)
+        //        SelectBlock(block);
+        //}
 
     }
 }

@@ -43,8 +43,16 @@ namespace AK_Timetable.Components
 
         protected override void OnInitialized()
         {
-            var content = File.ReadAllText("C:\\Users\\dell\\Desktop\\May table.json");
-            _workItems = JsonConvert.DeserializeObject<List<WorkItem>>(content);
+            try
+            {
+                var content = File.ReadAllText("C:\\Users\\dell\\Desktop\\May table.json");
+                _workItems = JsonConvert.DeserializeObject<List<WorkItem>>(content);
+            }
+            catch (Exception)
+            {
+                _workItems = new List<WorkItem>(); 
+            }
+            
         }
 
 
