@@ -1,0 +1,25 @@
+﻿.aktoolbar-command {
+    width: 60px;
+    height: 60px;
+    color: #0078d4;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+    .aktoolbar-command:hover {
+        background-color: #edebe9
+    }
+
+.disabled {
+    cursor: not-allowed;
+    background-color: #e1dfdd;
+    color: #797775;
+}
+
+    .disabled:hover {
+        background-color: #e1dfdd;
+    }

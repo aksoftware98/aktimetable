@@ -4,6 +4,12 @@
     <RootNamespace>AK_Timetable</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Components\TimetableBlockSummary.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Components\TimetableBlockSummary.razor" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="11.5.1" />
   </ItemGroup>
   <ItemGroup>
