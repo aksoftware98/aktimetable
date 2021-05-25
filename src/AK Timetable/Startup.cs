@@ -31,8 +31,12 @@ namespace AK_Timetable
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
-            
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
+                // Add the possibility of acquiring a token to call a protected web API
+                .EnableTokenAcquisitionToCallDownstreamApi(new[] { "https://graph.microsoft.com/Calendars.ReadWrite" })
+                    .AddMicrosoftGraph("https://graph.microsoft.com/v2.0")
+                    .AddInMemoryTokenCaches();
+
             services.AddControllersWithViews()
                 .AddMicrosoftIdentityUI();
 
