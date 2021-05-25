@@ -21,7 +21,7 @@
                 if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
                     style = "background-color: #dff6dd";
                 <td>
-                    <div draggable="false" class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="(e) => SelectBlock(e, item)" style="@style">
+                    <div draggable="false" class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="(e) => SelectBlock(e, item)" style="@style" >
                         @item.Name
                     </div>
                 </td>
@@ -31,7 +31,8 @@
 
 </table>
 
-@code {
+@code 
+{
 
 
 }
