@@ -30,12 +30,20 @@ namespace AK_Timetable
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+            //    .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
+            //    // Add the possibility of acquiring a token to call a protected web API
+            //    .EnableTokenAcquisitionToCallDownstreamApi(new[] { "https://graph.microsoft.com/Calendars.ReadWrite" })
+            //        .AddMicrosoftGraph("https://graph.microsoft.com/v1.0", "user.read calendars.readwrite")
+            //        .AddInMemoryTokenCaches();
+
+            var initialScopes = Configuration.GetValue<string>("DownstreamApi:Scopes")?.Split(' ');
+
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
-                // Add the possibility of acquiring a token to call a protected web API
-                .EnableTokenAcquisitionToCallDownstreamApi(new[] { "https://graph.microsoft.com/Calendars.ReadWrite" })
-                    .AddMicrosoftGraph("https://graph.microsoft.com/v2.0")
-                    .AddInMemoryTokenCaches();
+                    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                        .AddMicrosoftGraph(Configuration.GetSection("DownstreamApi"))
+                        .AddInMemoryTokenCaches();
 
             services.AddControllersWithViews()
                 .AddMicrosoftIdentityUI();

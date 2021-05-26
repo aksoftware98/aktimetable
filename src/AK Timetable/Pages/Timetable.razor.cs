@@ -24,8 +24,10 @@ namespace AK_Timetable.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            var result = await Graph.Me.Request().GetAsync();
-            _name = result.DisplayName;
+            string name = "something";
+
+            //var result = await Graph.Me.Request().GetAsync();
+            //_name = result.DisplayName;
         }
 
         private void OnSelectWorkItem(WorkItem workItem)
