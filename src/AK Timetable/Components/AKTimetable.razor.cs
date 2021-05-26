@@ -16,6 +16,9 @@ namespace AK_Timetable.Components
         public Timetable Timetable { get; set; }
 
         [Parameter]
+        public EventCallback<Timetable> TimetableChanged { get; set; }
+
+        [Parameter]
         public DateTime Day { get; set; }
 
         [Parameter]
@@ -23,6 +26,12 @@ namespace AK_Timetable.Components
 
         [Parameter]
         public EventCallback<List<TimetableBlock>> SelectedBlocksChanged { get; set; }
+
+        [Parameter]
+        public int ExportingNumber { get; set; }
+
+        [CascadingParameter]
+        public bool IsBusy { get; set; }
 
         protected override void OnParametersSet()
         {
@@ -39,16 +48,21 @@ namespace AK_Timetable.Components
         {
             if (!e.CtrlKey)
                 SelectedBlocks.Clear();
-            
+
+            var timetableBlock = Timetable.Blocks.SingleOrDefault(b => b.StartDate == block.StartDate);
             if (CheckSelection(block))
             {
                 SelectedBlocks.Remove(block);
+                timetableBlock.WorkItem = null;
             }
             else
             {
                 SelectedBlocks.Add(block);
+
             }
+
             SelectedBlocksChanged.InvokeAsync(SelectedBlocks);
+            TimetableChanged.InvokeAsync(Timetable);
         }
 
         internal void SetWorkItem(WorkItem workItem)
@@ -57,6 +71,7 @@ namespace AK_Timetable.Components
             {
                 item.WorkItem = workItem;
             }
+            TimetableChanged.InvokeAsync(Timetable);
             StateHasChanged();
         }
 

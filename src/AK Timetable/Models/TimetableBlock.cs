@@ -13,7 +13,7 @@ namespace AK_Timetable.Models
         public string Note { get; set; }
 
         public WorkItem WorkItem { get; set; }
-
+        public int Sequence { get; set; }
         public string Name => WorkItem?.Name;
     }
 }

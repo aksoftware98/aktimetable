@@ -1,35 +1,37 @@
 ﻿@page "/timetable" 
 @page "/" 
  
+<CascadingValue Value="_isBusy" IsFixed="true">
+    <div class="container">
+        <h2>Welcome to AK Timetable v0.1 <span class="badge bg-success">Preview</span></h2>
 
-<div class="container">
-    <h2>Welcome to AK Timetable v0.1 <span class="badge bg-success">Preview</span></h2>
-    <h3>@_name</h3>
-    <div class="row">
-        <div class="col-sm-12 col-lg-8">
-          
-            <div class="row">
-                <div class="col-12">
-                    <AKToolbar>
-                        <AKCommand Icon="Add" />
-                        <AKCommand Icon="Refresh" />
-                        <AKCommand Icon="EditNote" />
-                        <AKCommand Icon="Save" />
-                        <AKCommand Icon="Mail" />
-                    </AKToolbar>
+        <div class="row">
+            <div class="col-sm-12 col-lg-8">
+
+                <div class="row">
+                    <div class="col-12">
+                        <AKToolbar>
+                            <AKCommand Icon="Add" />
+                            <AKCommand Icon="Refresh" />
+                            <AKCommand Icon="EditNote" />
+                            <AKCommand Icon="Save" />
+                            <AKCommand Icon="Mail" />
+                            <AKCommand Icon="DateTime2" OnClick="ExportToMicrosoftAsync" />
+                        </AKToolbar>
+                    </div>
+                </div>
+
+                <!-- Timetable -->
+                <div class="row">
+                    <div class="col-12">
+                        <AKTimetable @ref="_timetable" ExportingNumber="_indexExport" />
+                    </div>
                 </div>
             </div>
 
-            <!-- Timetable -->
-            <div class="row">
-                <div class="col-12">
-                    <AKTimetable @ref="_timetable" />
-                </div>
+            <div class="col-sm-12 col-lg-4">
+                <WorkItemsList WorkItemSelect="OnSelectWorkItem" />
             </div>
-        </div>
-
-        <div class="col-sm-12 col-lg-4">
-          <WorkItemsList WorkItemSelect="OnSelectWorkItem" />
         </div>
     </div>
-</div>
+</CascadingValue>
