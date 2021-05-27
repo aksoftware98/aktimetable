@@ -76,7 +76,8 @@ namespace AK_Timetable.Pages
             {
                 ConsentHandler.HandleException(ex);
             }
-            _isBusy = true; 
+            _isBusy = false;
+            StateHasChanged();
         }
 
         private async Task<bool> CheckIfExportedAsync(WorkItem workItem, DateTime startDate, DateTime endDate)

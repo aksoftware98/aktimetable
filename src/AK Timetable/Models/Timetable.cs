@@ -9,13 +9,24 @@ namespace AK_Timetable.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime Day { get; set; }
+        private DateTime _day;
+        public DateTime Day
+        {
+            get => _day;
+            set
+            {
+                _day = value;
+                ChangeDay();
+            }
+        }
 
         public List<TimetableBlock> Blocks { get; set; }
-        
+
         public Timetable()
         {
             Blocks = new List<TimetableBlock>();
+            Day = DateTime.Now.Date;
+            ChangeDay(); 
             InitializeTimetable();
         }
 
@@ -33,6 +44,17 @@ namespace AK_Timetable.Models
                     EndDate = endDate,
                 });
             }
+        }
+        private void ChangeDay()
+        {
+            if (Blocks != null)
+                foreach (var item in Blocks)
+                {
+                    var startDate = new DateTime(_day.Year, _day.Month, _day.Day, item.StartDate.Hour, item.StartDate.Minute, item.StartDate.Second, DateTimeKind.Local);
+                    var endDate = new DateTime(_day.Year, _day.Month, _day.Day, item.EndDate.Hour, item.EndDate.Minute, item.EndDate.Second, DateTimeKind.Local);
+                    item.StartDate = startDate;
+                    item.EndDate = endDate;
+                }
         }
     }
 }

@@ -1,40 +1,53 @@
 ﻿
-<table class="timetable-table">
+<div class="row">
+    <div class="col-12">
+        @if (Timetable != null)
+        {
+            <input type="date" @bind-value="@Timetable.Day" class="form-control" />
+        }
 
-    @for (int i = 0; i < 12; i++)
-    {
-        <tr class="time-row">
-            @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
+        <h2 class="ms-fontSize-22">@Timetable.Day.ToShortDateString()</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="timetable-table">
+
+            @for (int i = 0; i < 12; i++)
             {
-                <td>
-                    @item.StartDate.ToString("hh:mm tt")
-                </td>
+                <tr class="time-row">
+                    @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
+                    {
+                        <td>
+                            @item.StartDate.ToString("hh:mm tt")
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
+                    {
+                        bool _isSelected = CheckSelection(item);
+                        string style = string.Empty;
+                        if (item.WorkItem != null)
+                            style = "background-color: " + item.WorkItem.Color;
+                        if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
+                            style = "background-color: #dff6dd";
+
+                        if (item.Sequence == ExportingNumber && IsBusy && item.WorkItem != null)
+                            style = "background-color: yellow";
+                        <td>
+                            <div draggable="false" class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="(e) => SelectBlock(e, item)" style="@style">
+                                @item.Name
+                            </div>
+                        </td>
+                    }
+                </tr>
             }
-        </tr>
-        <tr>
-            @foreach (var item in Timetable.Blocks.Skip(i * 8).Take(8))
-            {
-                bool _isSelected = CheckSelection(item);
-                string style = string.Empty;
-                if (item.WorkItem != null)
-                    style = "background-color: " + item.WorkItem.Color;
-                if (DateTime.Now >= item.StartDate && DateTime.Now < item.EndDate)
-                    style = "background-color: #dff6dd";
-
-                if (item.Sequence == ExportingNumber && IsBusy && item.WorkItem != null)
-                    style = "background-color: yellow";
-                <td>
-                    <div draggable="false" class="ms-depth-4 task-card @(_isSelected ? "selected-card" : "")" @onclick="(e) => SelectBlock(e, item)" style="@style" >
-                        @item.Name
-                    </div>
-                </td>
-            }
-        </tr>
-    }
-
-</table>
-
-@code 
+        </table>
+    </div>
+</div>
+@code
 {
 
 
