@@ -42,6 +42,7 @@ namespace AK_Timetable.Models
                 {
                     StartDate = startDate,
                     EndDate = endDate,
+                    Number = i + 1,
                 });
             }
         }

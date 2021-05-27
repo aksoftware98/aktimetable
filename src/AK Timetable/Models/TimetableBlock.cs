@@ -5,7 +5,7 @@ namespace AK_Timetable.Models
     public class TimetableBlock
     {
         public string Id { get; set; }
-
+        public int Number { get; set; }
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

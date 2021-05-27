@@ -46,9 +46,35 @@ namespace AK_Timetable.Components
 
         private void SelectBlock(MouseEventArgs e, TimetableBlock block)
         {
-            if (!e.CtrlKey)
+            if (!e.CtrlKey && !e.ShiftKey)
                 SelectedBlocks.Clear();
 
+            if (e.ShiftKey)
+            {
+                var lastBlock = SelectedBlocks.LastOrDefault();
+                int difference = block.Number - lastBlock.Number;
+                var emptyBlocks = Timetable.Blocks.Where(t => t.Number > lastBlock.Number && t.Number <= block.Number);
+                if (lastBlock != null)
+                {
+                    foreach (var item in emptyBlocks)
+                    {
+                        SelectUnselectedBlock(item);
+                    }
+                }
+            }
+            else
+            {
+                SelectUnselectedBlock(block);
+            }
+            
+           
+
+            SelectedBlocksChanged.InvokeAsync(SelectedBlocks);
+            TimetableChanged.InvokeAsync(Timetable);
+        }
+
+        private void SelectUnselectedBlock(TimetableBlock block)
+        {
             var timetableBlock = Timetable.Blocks.SingleOrDefault(b => b.StartDate == block.StartDate);
             if (CheckSelection(block))
             {
@@ -58,11 +84,7 @@ namespace AK_Timetable.Components
             else
             {
                 SelectedBlocks.Add(block);
-
             }
-
-            SelectedBlocksChanged.InvokeAsync(SelectedBlocks);
-            TimetableChanged.InvokeAsync(Timetable);
         }
 
         internal void SetWorkItem(WorkItem workItem)
