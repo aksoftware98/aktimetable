@@ -18,7 +18,7 @@ namespace AK_Timetable.Components
         public EventCallback<WorkItem> WorkItemSelect { get; set; }
 
         private WorkItem _selectedModel = null;
-        private List<WorkItem> _workItems = new List<WorkItem>();
+        private List<WorkItem> _workItems = new();
         private bool _isFromShown = false; 
 
         private void ToggleForm()
